@@ -13,6 +13,7 @@ Actions → Build iPhone IPA → Run workflow。构建成功后下载 Safee-unsi
 ## 当前功能
 
 麦克风录音、拍照录像、前台黑色界面、本地媒体管理与诊断导出。
-系统电话双方录音尚未实现，代码尚需云端编译和真机验证。
+系统电话双方录音尚未实现，已通过 Xcode 16.4 云端编译，尚需签名侧载和真机验证。
+[首次成功构建](https://github.com/urafrik/test/actions/runs/36416033912)。
 
 不包含 Safee 官方代码、素材、账号或服务。
