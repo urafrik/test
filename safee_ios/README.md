@@ -24,7 +24,7 @@
 4. 连接 iPhone，信任 Mac，根据系统要求启用开发者模式。
 5. 选择手机作为运行目标，点击 Run。第一次使用时授权相机与麦克风。
 
-工程尚未在 Xcode 编译或真机运行。当前开发环境为 Windows，没有 Xcode / iOS SDK；文件检查不能替代编译和设备验证。尚无可安装 IPA。
+2026-09-28 已在 GitHub Actions 的 macOS 环境中通过 Xcode 16.4 编译，生成未签名 IPA，并验证下载文件的 SHA-256 与包结构。[构建记录](https://github.com/urafrik/test/actions/runs/36416033912)。尚未完成 Apple ID 签名、手机安装或真机功能验证。
 
 ## Mac 编译检查
 
