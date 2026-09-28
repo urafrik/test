@@ -1,0 +1,89 @@
+name: Build iPhone IPA
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
+
+      - name: Build iPhone app without signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .build/artifacts
+          xcodebuild \
+            -project safee_ios/Safee.xcodeproj \
+            -scheme Safee \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath .build/DerivedData \
+            -resultBundlePath .build/Build.xcresult \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY='' \
+            build 2>&1 | tee .build/artifacts/xcodebuild.log
+
+      - name: Package unsigned IPA
+        shell: bash
+        run: |
+          set -euo pipefail
+          APP='.build/DerivedData/Build/Products/Release-iphoneos/Safee.app'
+          test -d "$APP"
+          test -f "$APP/Safee"
+          mkdir -p .build/package/Payload
+          ditto "$APP" .build/package/Payload/Safee.app
+          (
+            cd .build/package
+            /usr/bin/zip -qry ../artifacts/Safee-unsigned.ipa Payload
+          )
+          /usr/bin/unzip -t .build/artifacts/Safee-unsigned.ipa
+          shasum -a 256 .build/artifacts/Safee-unsigned.ipa > .build/artifacts/SHA256SUMS.txt
+          cp safee_ios/INSTALL_WINDOWS.md .build/artifacts/INSTALL_WINDOWS.md
+          {
+            printf 'Commit: %s\n' "$GITHUB_SHA"
+            printf 'Run: %s/%s/actions/runs/%s\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID"
+            xcodebuild -version
+            printf '\nUNSIGNED: requires re-signing before iPhone installation.\n'
+          } > .build/artifacts/build-info.txt
+          printf '### Unsigned IPA ready\n\nDownload **Safee-unsigned-ipa** under Artifacts. Re-sign it before installation.\n' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: Safee-unsigned-ipa
+          path: |
+            .build/artifacts/Safee-unsigned.ipa
+            .build/artifacts/SHA256SUMS.txt
+            .build/artifacts/build-info.txt
+            .build/artifacts/INSTALL_WINDOWS.md
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload build log even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build-diagnostics
+          path: |
+            .build/artifacts/xcodebuild.log
+            .build/Build.xcresult
+          if-no-files-found: warn
+          retention-days: 7

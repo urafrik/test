@@ -1,0 +1,8 @@
+.build/
+DerivedData/
+*.ipa
+*.p12
+*.mobileprovision
+*.xcuserstate
+xcuserdata/
+__pycache__/

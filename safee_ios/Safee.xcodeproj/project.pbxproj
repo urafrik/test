@@ -1,0 +1,33 @@
+// !$*UTF8*$!
+{
+ archiveVersion = 1;
+ classes = {};
+ objectVersion = 56;
+ objects = {
+  A00000000000000000000001 = {isa = PBXProject; attributes = {LastUpgradeCheck = 1600; TargetAttributes = {A00000000000000000000002 = {CreatedOnToolsVersion = 16.0; }; }; }; buildConfigurationList = A00000000000000000000010; compatibilityVersion = "Xcode 14.0"; developmentRegion = zh_CN; hasScannedForEncodings = 0; knownRegions = (zh_CN, en, Base); mainGroup = A00000000000000000000003; productRefGroup = A00000000000000000000004; projectDirPath = ""; projectRoot = ""; targets = (A00000000000000000000002); };
+  A00000000000000000000002 = {isa = PBXNativeTarget; buildConfigurationList = A00000000000000000000011; buildPhases = (A00000000000000000000005, A00000000000000000000006, A00000000000000000000007); buildRules = (); dependencies = (); name = Safee; productName = Safee; productReference = A00000000000000000000008; productType = "com.apple.product-type.application"; };
+  A00000000000000000000003 = {isa = PBXGroup; children = (A00000000000000000000009, A00000000000000000000004); sourceTree = "<group>"; };
+  A00000000000000000000004 = {isa = PBXGroup; children = (A00000000000000000000008); name = Products; sourceTree = "<group>"; };
+  A00000000000000000000005 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A00000000000000000000021, A00000000000000000000022, A00000000000000000000023, A00000000000000000000024); runOnlyForDeploymentPostprocessing = 0; };
+  A00000000000000000000006 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+  A00000000000000000000007 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+  A00000000000000000000008 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safee.app; sourceTree = BUILT_PRODUCTS_DIR; };
+  A00000000000000000000009 = {isa = PBXGroup; children = (A00000000000000000000031, A00000000000000000000032, A00000000000000000000033, A00000000000000000000034, A00000000000000000000035); path = Safee; sourceTree = "<group>"; };
+  A00000000000000000000010 = {isa = XCConfigurationList; buildConfigurations = (A00000000000000000000041, A00000000000000000000042); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+  A00000000000000000000011 = {isa = XCConfigurationList; buildConfigurations = (A00000000000000000000043, A00000000000000000000044); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+  A00000000000000000000021 = {isa = PBXBuildFile; fileRef = A00000000000000000000031; };
+  A00000000000000000000022 = {isa = PBXBuildFile; fileRef = A00000000000000000000032; };
+  A00000000000000000000023 = {isa = PBXBuildFile; fileRef = A00000000000000000000033; };
+  A00000000000000000000024 = {isa = PBXBuildFile; fileRef = A00000000000000000000035; };
+  A00000000000000000000031 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeeApp.swift; sourceTree = "<group>"; };
+  A00000000000000000000032 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureController.swift; sourceTree = "<group>"; };
+  A00000000000000000000033 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+  A00000000000000000000034 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+  A00000000000000000000035 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
+  A00000000000000000000041 = {isa = XCBuildConfiguration; buildSettings = {CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 16.0; SWIFT_VERSION = 5.0; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; DEBUG_INFORMATION_FORMAT = dwarf; }; name = Debug; };
+  A00000000000000000000042 = {isa = XCBuildConfiguration; buildSettings = {CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 16.0; SWIFT_VERSION = 5.0; SWIFT_COMPILATION_MODE = wholemodule; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; }; name = Release; };
+  A00000000000000000000043 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Safee/Info.plist; MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.safeestudio; PRODUCT_NAME = "$(TARGET_NAME)"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SUPPORTS_MACCATALYST = NO; TARGETED_DEVICE_FAMILY = 1; SWIFT_EMIT_LOC_STRINGS = YES; }; name = Debug; };
+  A00000000000000000000044 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Safee/Info.plist; MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.safeestudio; PRODUCT_NAME = "$(TARGET_NAME)"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SUPPORTS_MACCATALYST = NO; TARGETED_DEVICE_FAMILY = 1; SWIFT_EMIT_LOC_STRINGS = YES; }; name = Release; };
+ };
+ rootObject = A00000000000000000000001;
+}
