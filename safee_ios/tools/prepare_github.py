@@ -50,7 +50,8 @@ Actions → Build iPhone IPA → Run workflow。构建成功后下载 Safee-unsi
 ## 当前功能
 
 麦克风录音、拍照录像、前台黑色界面、本地媒体管理与诊断导出。
-系统电话双方录音尚未实现，代码尚需云端编译和真机验证。
+系统电话双方录音尚未实现。已通过 Xcode 16.4 云端编译，尚需签名侧载和真机验证。
+[首次成功构建](https://github.com/urafrik/test/actions/runs/36416033912)。
 
 不包含 Safee 官方代码、素材、账号或服务。
 '''
@@ -60,7 +61,7 @@ Actions → Build iPhone IPA → Run workflow。构建成功后下载 Safee-unsi
         archive.writestr('.gitignore', '.build/\nDerivedData/\n*.ipa\n*.p12\n*.mobileprovision\n*.xcuserstate\nxcuserdata/\n__pycache__/\n')
         archive.write(workflow, '.github/workflows/build-ios.yml')
         for file in PROJECT.rglob('*'):
-            if file.is_file() and file.suffix in ('.swift', '.plist', '.pbxproj', '.xcscheme', '.md', '.py') and '__pycache__' not in file.parts:
+            if file.is_file() and file.suffix in ('.swift', '.plist', '.pbxproj', '.xcscheme', '.md', '.py') and not any(part in ('__pycache__', 'artifacts') for part in file.relative_to(PROJECT).parts):
                 archive.write(file, file.relative_to(ROOT).as_posix())
     with zipfile.ZipFile(destination) as archive:
         assert archive.testzip() is None
